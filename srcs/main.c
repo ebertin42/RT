@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/rt.h"
-#include "../libft/includes/libft.h"
-#include <stdint.h>
-#include <time.h>
 
 void	init_hud_var(t_sdl *s)
 {
@@ -31,9 +28,9 @@ void	init_hud_var(t_sdl *s)
 
 void	loading(t_sdl *s, int i)
 {
-	SDL_Surface *surf;
+	SDL_Surface	*surf;
 	SDL_Rect	rect;
-	SDL_Texture *tex;
+	SDL_Texture	*tex;
 
 	if (i == 0)
 	{
@@ -45,39 +42,22 @@ void	loading(t_sdl *s, int i)
 		rect = init_sdl_rect(0, 0, WIN_X - 1, WIN_Y - 1);
 		surf = SDL_LoadBMP("./img_srcs/load2.bmp");
 	}
-	if (!(tex = SDL_CreateTextureFromSurface(s->renderer, surf)))
+	tex = SDL_CreateTextureFromSurface(s->renderer, surf);
+	if (!tex)
 		ft_sdl_error("Texture error : ", SDL_GetError());
 	SDL_RenderCopy(s->renderer, tex, NULL, &rect);
 	SDL_RenderPresent(s->renderer);
 	SDL_FreeSurface(surf);
 }
 
-void	call_loading(t_sdl *s)
+void	main_loop(int r, t_sdl s, t_env e)
 {
-	loading(s, 0);
-	ft_wait();
-	loading(s, 1);
-	ft_wait();
-}
-
-int		main(int ac, char **av)
-{
-	t_sdl	s;
-	t_env	e;
-	int		r;
-
-	check_define();
-	e.ca = init_cam();
-	if ((r = 1) == 1 && ac != 2)
-		ft_error("\nWrong number of arguments.\n");
-	ft_init(&s, av[1], &e);
-	raytracing(&e, &s);
 	while (r)
 	{
 		while (SDL_PollEvent(&s.event))
 		{
-			if ((SDL_QUIT == s.event.type) ||
-		(SDL_SCANCODE_ESCAPE == s.event.key.keysym.scancode))
+			if ((SDL_QUIT == s.event.type)
+				|| (SDL_SCANCODE_ESCAPE == s.event.key.keysym.scancode))
 				r = 0;
 			else if ((SDL_KEYDOWN == s.event.type))
 				mouv(s.event.key.keysym.scancode, &e, &s);
@@ -85,6 +65,22 @@ int		main(int ac, char **av)
 				main_mouse(s.event.button.x, s.event.button.y, &s, &e);
 		}
 	}
+}
+
+int	main(int ac, char **av)
+{
+	t_sdl	s;
+	t_env	e;
+	int		r;
+
+	check_define();
+	e.ca = init_cam();
+	r = 1;
+	if (ac != 2)
+		ft_error("\nWrong number of arguments.\n");
+	ft_init(&s, av[1], &e);
+	raytracing(&e, &s);
+	main_loop(r, s, e);
 	quit_sdl_proprely(&s);
 	return (0);
 }

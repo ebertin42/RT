@@ -14,11 +14,11 @@
 
 void	mouse_light(int x, int y, t_sdl *s, t_env *e)
 {
-	if (y >= s->hud1.bouton[17].rect.y &&
-		y <= s->hud1.bouton[17].rect.y + s->hud1.bouton[17].rect.h)
+	if (y >= s->hud1.bouton[17].rect.y
+		&& y <= s->hud1.bouton[17].rect.y + s->hud1.bouton[17].rect.h)
 	{
-		if (x >= s->hud1.bouton[17].rect.x &&
-			x <= s->hud1.bouton[17].rect.x + s->hud1.bouton[17].rect.w)
+		if (x >= s->hud1.bouton[17].rect.x
+			&& x <= s->hud1.bouton[17].rect.x + s->hud1.bouton[17].rect.w)
 		{
 			s->hud1.bouton[17].i = 3;
 			display(s, e);
@@ -27,8 +27,8 @@ void	mouse_light(int x, int y, t_sdl *s, t_env *e)
 			s->hud1.bouton[17].i = 1;
 			display(s, e);
 		}
-		else if (x >= s->hud1.bouton[18].rect.x &&
-			x <= s->hud1.bouton[18].rect.x + s->hud1.bouton[18].rect.w)
+		else if (x >= s->hud1.bouton[18].rect.x
+			&& x <= s->hud1.bouton[18].rect.x + s->hud1.bouton[18].rect.w)
 		{
 			s->hud1.bouton[18].i = 2;
 			display(s, e);
@@ -60,22 +60,22 @@ void	mouse_color_obj_change(int x, int y, t_sdl *s, t_env *e)
 
 void	mouse_change_reflect_trans(int x, int y, t_sdl *s, t_env *e)
 {
-	if (x >= s->hud1.option[0].rect.x && x <=
-		s->hud1.option[0].rect.x + s->hud1.option[0].rect.w)
+	if (x >= s->hud1.option[0].rect.x && x
+		<= s->hud1.option[0].rect.x + s->hud1.option[0].rect.w)
 	{
-		if (y >= s->hud1.option[0].rect.y && y <=
-			s->hud1.option[0].rect.y + s->hud1.option[0].rect.h)
+		if (y >= s->hud1.option[0].rect.y && y
+			<= s->hud1.option[0].rect.y + s->hud1.option[0].rect.h)
 		{
 			e->obj[s->hud1.tok.obj_select].reflex =
 			e->obj[s->hud1.tok.obj_select].reflex == 1 ? 0 : 1;
 			raytracing(e, s);
 		}
 	}
-	if (x >= s->hud1.option[1].rect.x && x <=
-		s->hud1.option[1].rect.x + s->hud1.option[1].rect.w)
+	if (x >= s->hud1.option[1].rect.x && x
+		<= s->hud1.option[1].rect.x + s->hud1.option[1].rect.w)
 	{
-		if (y >= s->hud1.option[1].rect.y && y <=
-			s->hud1.option[1].rect.y + s->hud1.option[1].rect.h)
+		if (y >= s->hud1.option[1].rect.y && y
+			<= s->hud1.option[1].rect.y + s->hud1.option[1].rect.h)
 		{
 			e->obj[s->hud1.tok.obj_select].transp =
 			e->obj[s->hud1.tok.obj_select].transp == 1 ? 0 : 1;

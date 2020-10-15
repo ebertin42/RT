@@ -45,17 +45,17 @@ void	some_traits(t_env *e)
 
 void	init_plmor(t_sdl *s)
 {
-	s->hud1.plmor[0].rect = init_sdl_rect(WIN_X -
-		COL + 80, WIN_Y / 2 + 115, 50, 30);
-	s->hud1.plmor[1].rect = init_sdl_rect(WIN_X -
-		COL + 140, WIN_Y / 2 + 115, 30, 30);
-	s->hud1.plmor[2].rect = init_sdl_rect(WIN_X -
-		COL + 175, WIN_Y / 2 + 115, 30, 30);
+	s->hud1.plmor[0].rect = init_sdl_rect(WIN_X
+			- COL + 80, WIN_Y / 2 + 115, 50, 30);
+	s->hud1.plmor[1].rect = init_sdl_rect(WIN_X
+			- COL + 140, WIN_Y / 2 + 115, 30, 30);
+	s->hud1.plmor[2].rect = init_sdl_rect(WIN_X
+			- COL + 175, WIN_Y / 2 + 115, 30, 30);
 	s->hud1.plmor[0].i = 31;
 	s->hud1.plmor[1].i = 1;
 	s->hud1.plmor[2].i = 0;
-	s->hud1.add_obj_data[6].rect = init_sdl_rect(WIN_X -
-		COL + 80, WIN_Y / 2 + 115, 50, 30);
+	s->hud1.add_obj_data[6].rect = init_sdl_rect(WIN_X
+			- COL + 80, WIN_Y / 2 + 115, 50, 30);
 }
 
 /*
@@ -66,9 +66,10 @@ void	init_background(t_sdl *s, t_env *e)
 {
 	t_rect	r1;
 
-	s->hud1.shape_img.rect = init_sdl_rect(SIZE_X / 4 + SIZE_X +
-		(SIZE_X / 4 / 8), SIZE_Y / 8 + SIZE_Y / 16, SIZE_X / 5, SIZE_X / 5);
-	if (!(e->hud = (Uint32*)malloc(sizeof(Uint32) * WIN_X * WIN_Y)))
+	s->hud1.shape_img.rect = init_sdl_rect(SIZE_X / 4 + SIZE_X + (SIZE_X
+				/ 4 / 8), SIZE_Y / 8 + SIZE_Y / 16, SIZE_X / 5, SIZE_X / 5);
+	e->hud = (Uint32*)malloc(sizeof(Uint32) * WIN_X * WIN_Y);
+	if (!e->hud)
 		ft_error("MALLOC ERROR");
 	r1 = init_rect(0, 0, WIN_X, WIN_Y);
 	print_rect(r1, e, 1, COLOR_BACK);

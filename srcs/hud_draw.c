@@ -12,28 +12,52 @@
 
 #include "../includes/rt.h"
 
-void	empty_rect(t_rect b, t_env *e, int t, int color)
+void	empty_rect_hud(t_rect b, t_env *e, int t, int color)
 {
-	int i;
+	int	i;
 
 	i = b.x;
 	while (i != b.x + b.len)
 	{
-		t == 1 ? ft_put_pixel_hud(e->hud, i, b.y, color) :
-		ft_put_pixel_winrend(e->pixels, i, b.y, color);
-		t == 1 ? ft_put_pixel_hud(e->hud, i, b.y + b.hei, color) :
-		ft_put_pixel_winrend(e->pixels, i, b.y + b.hei, color);
+		if (t == 1)
+		{
+			ft_put_pixel_hud(e->hud, i, b.y, color);
+			ft_put_pixel_hud(e->hud, i, b.y + b.hei, color);
+		}
+		else
+		{
+			ft_put_pixel_winrend(e->pixels, i, b.y, color);
+			ft_put_pixel_winrend(e->pixels, i, b.y + b.hei, color);
+		}
 		i++;
 	}
+}
+
+void	empty_rect_pixel(t_rect b, t_env *e, int t, int color)
+{
+	int	i;
+
 	i = b.y;
 	while (i != b.y + b.hei)
 	{
-		t == 1 ? ft_put_pixel_hud(e->hud, b.x, i, color) :
-		ft_put_pixel_winrend(e->pixels, b.x, i, color);
-		t == 1 ? ft_put_pixel_hud(e->hud, b.x + b.len, i, color) :
-		ft_put_pixel_winrend(e->pixels, b.x + b.len, i, color);
+		if (t == 1)
+		{
+			ft_put_pixel_hud(e->hud, b.x, i, color);
+			ft_put_pixel_hud(e->hud, b.x + b.len, i, color);
+		}
+		else
+		{
+			ft_put_pixel_winrend(e->pixels, b.x, i, color);
+			ft_put_pixel_winrend(e->pixels, b.x + b.len, i, color);
+		}
 		i++;
 	}
+}
+
+void	empty_rect(t_rect b, t_env *e, int t, int color)
+{
+	empty_rect_hud(b, e, t, color);
+	empty_rect_pixel(b, e, t, color);
 }
 
 void	ornement(SDL_Rect p, int color, int size, t_env *e)

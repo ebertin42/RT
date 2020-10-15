@@ -14,7 +14,7 @@
 
 void	check_define(void)
 {
-	int t;
+	int	t;
 
 	t = 0;
 	if (SIZE_X / 2 != SIZE_X_2)

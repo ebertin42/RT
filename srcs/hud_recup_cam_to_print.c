@@ -12,11 +12,11 @@
 
 #include "../includes/rt.h"
 
-void		recup_cam_to_print(t_sdl *s, t_env *e)
+void	recup_cam_to_print(t_sdl *s, t_env *e)
 {
-	s->hud1.cam.title.rect = init_sdl_rect((SIZE_X / 4 - 10) / 2 -
-	((SIZE_X / 6 - (WIN_X / 50) - 10) / 2), SIZE_Y / 3 - 10, SIZE_X / 6 -
-	(WIN_X / 50) - 10, 20);
+	s->hud1.cam.title.rect = init_sdl_rect((SIZE_X / 4 - 10) / 2
+			- ((SIZE_X / 6 - (WIN_X / 50) - 10) / 2), SIZE_Y / 3 - 10,
+			SIZE_X / 6 - (WIN_X / 50) - 10, 20);
 	print_text(ft_strdup("Camera"), s->font.color[1], s, &s->hud1.cam.title);
 	s->hud1.cam.pos_x.rect = init_sdl_rect(105, 270, 17, 10);
 	print_text(ft_itoa(e->ca.pos.x), s->font.color[1], s, &s->hud1.cam.pos_x);
@@ -32,7 +32,7 @@ void		recup_cam_to_print(t_sdl *s, t_env *e)
 	print_text(ft_itoa(e->ca.rot.z), s->font.color[1], s, &s->hud1.cam.rot_z);
 }
 
-void		destroy_cam_tex(t_sdl *s)
+void	destroy_cam_tex(t_sdl *s)
 {
 	SDL_DestroyTexture(s->hud1.cam.title.tex);
 	SDL_DestroyTexture(s->hud1.cam.pos_x.tex);

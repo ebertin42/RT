@@ -12,8 +12,14 @@
 
 #include "../includes/rt.h"
 
-void		ft_init_sub(t_sdl *s, t_env *e, char *name)
+void	ft_init_sub(t_sdl *s, t_env *e, char *name)
 {
+	s->hud1.s_back = SDL_CreateRGBSurface(0, WIN_X, WIN_Y, 32, 0, 0, 0, 0);
+	if (s->hud1.s_back == NULL)
+		ft_sdl_error("Surface error : ", SDL_GetError());
+	e->pixels = (Uint32*)ft_memalloc(sizeof(Uint32) * SIZE_X * SIZE_Y);
+	if (!e->pixels)
+		ft_error("\nmalloc error\n");
 	free(s->rendu->pixels);
 	free(s->hud1.s_back->pixels);
 	parser(name, e);
@@ -21,9 +27,9 @@ void		ft_init_sub(t_sdl *s, t_env *e, char *name)
 	hud_init(s, e);
 }
 
-void		ft_init(t_sdl *s, char *name, t_env *e)
+void	ft_init(t_sdl *s, char *name, t_env *e)
 {
-	char *str;
+	char	*str;
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
@@ -35,16 +41,12 @@ void		ft_init(t_sdl *s, char *name, t_env *e)
 	free(str);
 	if (s->window == NULL)
 		exit(1);
-	if ((s->renderer = SDL_CreateRenderer(s->window, -1, 0)) == NULL)
+	s->renderer = SDL_CreateRenderer(s->window, -1, 0);
+	if (s->renderer == NULL)
 		ft_sdl_error("Renderer error : ", SDL_GetError());
 	open_texture(s);
-	if ((s->rendu = SDL_CreateRGBSurface(0, SIZE_X, SIZE_Y, 32, 0, 0, 0, 0))
-			== NULL)
+	s->rendu = SDL_CreateRGBSurface(0, SIZE_X, SIZE_Y, 32, 0, 0, 0, 0);
+	if (s->rendu == NULL)
 		ft_sdl_error("Surface error : ", SDL_GetError());
-	if ((s->hud1.s_back = SDL_CreateRGBSurface(0, WIN_X, WIN_Y, 32, 0, 0, 0, 0))
-			== NULL)
-		ft_sdl_error("Surface error : ", SDL_GetError());
-	if (!(e->pixels = (Uint32*)ft_memalloc(sizeof(Uint32) * SIZE_X * SIZE_Y)))
-		ft_error("\nmalloc error\n");
 	ft_init_sub(s, e, name);
 }

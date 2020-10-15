@@ -15,16 +15,16 @@
 void	display_multi_text(t_sdl *s)
 {
 	if ((SDL_RenderCopy(s->renderer, s->hud1.multi_text[0].tex, NULL,
-		&s->hud1.multi_text[0].rect)) < 0)
+				&s->hud1.multi_text[0].rect)) < 0)
 		ft_sdl_error("Texture error : ", SDL_GetError());
 	if ((SDL_RenderCopy(s->renderer, s->hud1.multi_text[1].tex, NULL,
-		&s->hud1.multi_text[1].rect)) < 0)
+				&s->hud1.multi_text[1].rect)) < 0)
 		ft_sdl_error("Texture error : ", SDL_GetError());
 	if ((SDL_RenderCopy(s->renderer, s->hud1.multi_text[2].tex, NULL,
-		&s->hud1.multi_text[2].rect)) < 0)
+				&s->hud1.multi_text[2].rect)) < 0)
 		ft_sdl_error("Texture error : ", SDL_GetError());
 	if ((SDL_RenderCopy(s->renderer, s->tex[31], NULL,
-		&s->hud1.multi_bouton[s->hud1.multi])) < 0)
+				&s->hud1.multi_bouton[s->hud1.multi])) < 0)
 		ft_sdl_error("Texture error : ", SDL_GetError());
 }
 
@@ -33,22 +33,23 @@ void	display_cam(t_sdl *s)
 	int		*r;
 	int		i;
 
-	if (!(r = (int*)malloc(sizeof(int) * 7)))
+	r = (int*)malloc(sizeof(int) * 7);
+	if (!r)
 		ft_error("\nMalloc Error\n");
 	r[0] = SDL_RenderCopy(s->renderer, s->hud1.cam.title.tex, NULL,
-		&s->hud1.cam.title.rect);
+			&s->hud1.cam.title.rect);
 	r[1] = SDL_RenderCopy(s->renderer, s->hud1.cam.pos_x.tex, NULL,
-		&s->hud1.cam.pos_x.rect);
+			&s->hud1.cam.pos_x.rect);
 	r[2] = SDL_RenderCopy(s->renderer, s->hud1.cam.pos_y.tex, NULL,
-		&s->hud1.cam.pos_y.rect);
+			&s->hud1.cam.pos_y.rect);
 	r[3] = SDL_RenderCopy(s->renderer, s->hud1.cam.pos_z.tex, NULL,
-		&s->hud1.cam.pos_z.rect);
+			&s->hud1.cam.pos_z.rect);
 	r[4] = SDL_RenderCopy(s->renderer, s->hud1.cam.rot_x.tex, NULL,
-		&s->hud1.cam.rot_x.rect);
+			&s->hud1.cam.rot_x.rect);
 	r[5] = SDL_RenderCopy(s->renderer, s->hud1.cam.rot_y.tex, NULL,
-		&s->hud1.cam.rot_y.rect);
+			&s->hud1.cam.rot_y.rect);
 	r[6] = SDL_RenderCopy(s->renderer, s->hud1.cam.rot_z.tex, NULL,
-		&s->hud1.cam.rot_z.rect);
+			&s->hud1.cam.rot_z.rect);
 	i = -1;
 	while (++i < 7)
 		if (r[i] < 0)

@@ -14,7 +14,7 @@
 
 t_obj	realloc_plan(t_env *e, int i)
 {
-	t_obj ret;
+	t_obj	ret;
 
 	ret.pos = init_point(e->obj[i].pos.x, e->obj[i].pos.y, e->obj[i].pos.z);
 	ret.color = e->obj[i].color;
@@ -33,7 +33,7 @@ t_obj	realloc_plan(t_env *e, int i)
 
 t_obj	realloc_cone(t_env *e, int i)
 {
-	t_obj ret;
+	t_obj	ret;
 
 	ret.pos = init_point(e->obj[i].pos.x, e->obj[i].pos.y, e->obj[i].pos.z);
 	ret.angle = e->obj[i].angle;
@@ -55,7 +55,7 @@ t_obj	realloc_cone(t_env *e, int i)
 
 t_obj	realloc_cylindre(t_env *e, int i)
 {
-	t_obj ret;
+	t_obj	ret;
 
 	ret.pos = init_point(e->obj[i].pos.x, e->obj[i].pos.y, e->obj[i].pos.z);
 	ret.rayon = e->obj[i].rayon;
@@ -79,7 +79,7 @@ t_obj	realloc_cylindre(t_env *e, int i)
 
 t_obj	realloc_disque(t_env *e, int i)
 {
-	t_obj ret;
+	t_obj	ret;
 
 	ret.pos = init_point(e->obj[i].pos.x, e->obj[i].pos.y, e->obj[i].pos.z);
 	ret.rayon = e->obj[i].rayon;
@@ -102,28 +102,12 @@ t_obj	realloc_disque(t_env *e, int i)
 t_obj	*realloc_obj(t_env *e)
 {
 	t_obj	*new;
-	int		i;
 
-	i = 0;
 	e->nb++;
-	if (!(new = (t_obj *)malloc(sizeof(t_obj) * e->nb)))
+	new = (t_obj *)malloc(sizeof(t_obj) * e->nb);
+	if (!new)
 		ft_error("malloc error\n");
-	while (i != e->nb - 1)
-	{
-		if (e->obj[i].type == 2)
-			new[i] = realloc_cylindre(e, i);
-		else if (e->obj[i].type == 3)
-			new[i] = realloc_cone(e, i);
-		else if (e->obj[i].type == 4)
-			new[i] = realloc_plan(e, i);
-		else if (e->obj[i].type == 1)
-			new[i] = realloc_sphere(e, i);
-		else if (e->obj[i].type == 5)
-			new[i] = realloc_disque(e, i);
-		else
-			ft_error("realloc error\n");
-		i++;
-	}
+	realloc_obj_helper(new, e);
 	free(e->obj);
 	return (new);
 }

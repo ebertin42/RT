@@ -15,9 +15,9 @@
 void	display_credits(t_sdl *s)
 {
 	if ((SDL_RenderCopy(s->renderer, s->hud1.credits.title.tex, NULL,
-		&s->hud1.credits.title.rect)) < 0)
+				&s->hud1.credits.title.rect)) < 0)
 		ft_error("\nRender copy Error\n");
 	if ((SDL_RenderCopy(s->renderer, s->hud1.credits.names.tex, NULL,
-		&s->hud1.credits.names.rect)) < 0)
+				&s->hud1.credits.names.rect)) < 0)
 		ft_error("\nRender copy Error\n");
 }

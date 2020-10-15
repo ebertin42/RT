@@ -12,7 +12,7 @@
 
 #include "../includes/rt.h"
 
-void		call_display_hud_function(t_sdl *s, t_env *e)
+void	call_display_hud_function(t_sdl *s, t_env *e)
 {
 	display_pipette(s);
 	display_work_space(s, e);
@@ -31,9 +31,9 @@ static void	check_hud(t_sdl *s, t_env *e)
 	if (e->obj[s->hud1.tok.obj_select].transp == 1)
 		SDL_RenderCopy(s->renderer, s->tex[s->hud1.option[1].i], NULL,
 			&s->hud1.option[1].rect);
-	if (e->obj[s->hud1.tok.obj_select].type == 1 ||
-		e->obj[s->hud1.tok.obj_select].type == 2 ||
-		e->obj[s->hud1.tok.obj_select].type == 3)
+	if (e->obj[s->hud1.tok.obj_select].type == 1
+		|| e->obj[s->hud1.tok.obj_select].type == 2
+		|| e->obj[s->hud1.tok.obj_select].type == 3)
 	{
 		SDL_RenderCopy(s->renderer, s->tex[s->hud1.plmor[0].i], NULL,
 			&s->hud1.plmor[0].rect);
@@ -42,19 +42,19 @@ static void	check_hud(t_sdl *s, t_env *e)
 		SDL_RenderCopy(s->renderer, s->tex[s->hud1.plmor[2].i], NULL,
 			&s->hud1.plmor[2].rect);
 	}
-	if (e->obj[s->hud1.tok.obj_select].type == 1 ||
-		e->obj[s->hud1.tok.obj_select].type == 2 ||
-		e->obj[s->hud1.tok.obj_select].type == 3)
+	if (e->obj[s->hud1.tok.obj_select].type == 1
+		|| e->obj[s->hud1.tok.obj_select].type == 2
+		|| e->obj[s->hud1.tok.obj_select].type == 3)
 	{
 		if ((SDL_RenderCopy(s->renderer, s->hud1.add_obj_data[6].tex, NULL,
-			&s->hud1.add_obj_data[6].rect)) < 0)
+					&s->hud1.add_obj_data[6].rect)) < 0)
 			ft_sdl_error("Texture error : ", SDL_GetError());
 	}
 }
 
-void		display_hud(t_sdl *s, t_env *e)
+void	display_hud(t_sdl *s, t_env *e)
 {
-	t_rect r1;
+	t_rect	r1;
 
 	if (s->hud1.tok.obj_select != -1)
 	{

@@ -12,7 +12,7 @@
 
 #include "../includes/rt.h"
 
-static int		ft_wait_first_loadscreen(int x, int i)
+static int	ft_wait_first_loadscreen(int x, int i)
 {
 	(void)i;
 	ft_wait();
@@ -23,13 +23,16 @@ static int		ft_wait_first_loadscreen(int x, int i)
 	return (x + 1);
 }
 
-void			loading_screen(int i, t_sdl *s)
+void	loading_screen(int i, t_sdl *s)
 {
 	SDL_Rect		r;
 	static int		x = 0;
 	int				y;
 
-	y = (x < 3) ? 4 : 0;
+	if (x > 3)
+		y = 4;
+	else
+		y = 0;
 	if (i > 3)
 	{
 		if (x < 3)

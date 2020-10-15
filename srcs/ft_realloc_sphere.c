@@ -14,7 +14,7 @@
 
 t_obj	realloc_sphere(t_env *e, int i)
 {
-	t_obj ret;
+	t_obj	ret;
 
 	ret.pos = init_point(e->obj[i].pos.x, e->obj[i].pos.y, e->obj[i].pos.z);
 	ret.rayon = e->obj[i].rayon;
